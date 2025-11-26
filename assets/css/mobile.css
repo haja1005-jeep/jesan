@@ -1,0 +1,486 @@
+/* ================================================
+   모바일 최적화 스타일
+   ================================================ */
+
+/* 기본 반응형 설정 */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    /* ========== 햄버거 메뉴 버튼 ========== */
+    .hamburger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1100;
+        transition: transform 0.3s ease;
+    }
+
+    .hamburger-btn span {
+        width: 100%;
+        height: 3px;
+        background-color: #2d3748;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    .hamburger-btn.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-btn.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ========== 헤더 ========== */
+    .header-content {
+        padding: 0 16px;
+        justify-content: space-between;
+    }
+
+    .logo h1 {
+        font-size: 16px;
+    }
+
+    .logo svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* 데스크톱 네비게이션 숨기기 */
+    .desktop-nav {
+        display: none;
+    }
+
+    /* 모바일 로그인 버튼 */
+    .mobile-login {
+        display: block;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* ========== 모바일 오버레이 ========== */
+    .mobile-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 1000;
+    }
+
+    .mobile-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* ========== 필터 패널 (사이드바) ========== */
+    .filter-panel {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        width: 320px;
+        max-width: 85vw;
+        height: 100vh;
+        background: white;
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-panel.active {
+        left: 0;
+    }
+
+    /* 모바일 메뉴 헤더 */
+    .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: 1px solid #e2e8f0;
+        background: #f7fafc;
+    }
+
+    .mobile-menu-header h2 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0;
+    }
+
+    .btn-close-menu {
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        color: #718096;
+        transition: color 0.2s;
+    }
+
+    .btn-close-menu:hover {
+        color: #2d3748;
+    }
+
+    /* 모바일 네비게이션 */
+    .mobile-nav {
+        display: block;
+        padding: 8px 0;
+    }
+
+    .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 20px;
+        color: #4a5568;
+        text-decoration: none;
+        font-size: 15px;
+        transition: background-color 0.2s;
+    }
+
+    .mobile-nav-link span:first-child {
+        font-size: 20px;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+        background-color: #edf2f7;
+        color: #2d3748;
+    }
+
+    .filter-divider {
+        height: 8px;
+        background-color: #f7fafc;
+        margin: 8px 0;
+    }
+
+    /* 필터 섹션 */
+    .filter-header {
+        padding: 16px 20px 12px;
+    }
+
+    .filter-header h2 {
+        font-size: 16px;
+    }
+
+    .filter-section {
+        padding: 12px 20px;
+    }
+
+    .filter-label {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    /* 카테고리 버튼 */
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .category-btn {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+
+    .category-icon {
+        font-size: 20px;
+    }
+
+    /* 모바일 재산 목록 */
+    .mobile-asset-list {
+        display: block;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .asset-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .asset-list-item {
+        padding: 12px;
+        background: #f7fafc;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .asset-list-item:active {
+        background-color: #edf2f7;
+    }
+
+    .asset-list-item h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #2d3748;
+        margin: 0 0 4px 0;
+    }
+
+    .asset-list-item p {
+        font-size: 12px;
+        color: #718096;
+        margin: 0;
+    }
+
+    /* 필터 적용 버튼 */
+    .mobile-filter-actions {
+        display: block;
+        padding: 16px 20px;
+        border-top: 1px solid #e2e8f0;
+        position: sticky;
+        bottom: 0;
+        background: white;
+    }
+
+    .btn-apply-filter {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .btn-apply-filter:active {
+        transform: scale(0.98);
+    }
+
+    /* ========== 지도 영역 ========== */
+    .map-container {
+        width: 100%;
+        height: calc(100vh - 60px);
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 플로팅 필터 버튼 */
+    .floating-filter-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        padding: 12px 16px;
+        background: white;
+        border: none;
+        border-radius: 25px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        font-size: 14px;
+        font-weight: 500;
+        color: #2d3748;
+        cursor: pointer;
+        z-index: 100;
+        transition: all 0.2s;
+    }
+
+    .floating-filter-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* 재산 상세 카드 */
+    .asset-detail-card {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 50vh;
+        background: white;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        overflow-y: auto;
+        z-index: 200;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .asset-detail-card.active {
+        transform: translateY(0);
+    }
+
+    .btn-close-card {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        background: #edf2f7;
+        border: none;
+        border-radius: 50%;
+        font-size: 18px;
+        color: #718096;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .btn-close-card:active {
+        background: #e2e8f0;
+    }
+
+    /* ========== 터치 최적화 ========== */
+    button, a, .category-btn, .chip {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* 입력 필드 */
+    .search-input,
+    .filter-select {
+        font-size: 16px; /* iOS 자동 줌 방지 */
+    }
+
+    /* 스크롤바 숨기기 (모바일) */
+    .filter-panel::-webkit-scrollbar {
+        width: 0;
+        display: none;
+    }
+}
+
+/* ========== 태블릿 (768px ~ 1024px) ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hamburger-btn {
+        display: none;
+    }
+
+    .mobile-overlay {
+        display: none;
+    }
+
+    .mobile-menu-header {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    .filter-divider {
+        display: none;
+    }
+
+    .mobile-asset-list {
+        display: none;
+    }
+
+    .mobile-filter-actions {
+        display: none;
+    }
+
+    .floating-filter-btn {
+        display: none;
+    }
+
+    .filter-panel {
+        position: static;
+        width: 300px;
+        max-width: 300px;
+        height: auto;
+    }
+}
+
+/* ========== 데스크톱 (1025px 이상) ========== */
+@media (min-width: 1025px) {
+    .hamburger-btn {
+        display: none;
+    }
+
+    .mobile-login {
+        display: none;
+    }
+
+    .mobile-overlay {
+        display: none;
+    }
+
+    .mobile-menu-header {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: none;
+    }
+
+    .filter-divider {
+        display: none;
+    }
+
+    .mobile-asset-list {
+        display: none;
+    }
+
+    .mobile-filter-actions {
+        display: none;
+    }
+
+    .floating-filter-btn {
+        display: none;
+    }
+
+    .filter-panel {
+        position: static;
+        left: 0;
+        width: 320px;
+        height: auto;
+    }
+}
+
+/* ========== 애니메이션 ========== */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ========== 스와이프 제스처 지원 ========== */
+.filter-panel {
+    touch-action: pan-y;
+}
+
+.map {
+    touch-action: pan-x pan-y;
+}
