@@ -1,0 +1,539 @@
+/* ================================================
+   🎨 하단 카드 메뉴 - 프리미엄 디자인
+   ================================================ */
+
+/* 기본 카드 스타일 */
+.asset-detail-card {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 60vh;
+    background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15), 
+                0 0 0 1px rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    z-index: 200;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.asset-detail-card.active {
+    transform: translateY(0);
+}
+
+/* 상단 핸들 바 */
+.asset-detail-card::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    z-index: 1;
+}
+
+/* 카드 스크롤 컨테이너 */
+.card-scroll-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 28px 20px 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 닫기 버튼 - 세련된 디자인 */
+.btn-close-card {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #6b7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-close-card:active {
+    background: white;
+    transform: scale(0.9) rotate(90deg);
+}
+
+/* ================================================
+   📸 썸네일 이미지 섹션
+   ================================================ */
+
+.card-thumbnail {
+    width: calc(100% + 40px);
+    margin: -28px -20px 20px -20px;
+    height: 180px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-thumbnail-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 이미지 오버레이 그라데이션 */
+.card-thumbnail::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+}
+
+/* 이미지 개수 배지 */
+.image-count-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 2;
+}
+
+/* ================================================
+   📝 카드 헤더
+   ================================================ */
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    flex-shrink: 0;
+}
+
+.card-title-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+}
+
+.card-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.meta-badge {
+    padding: 5px 10px;
+    background: #f3f4f6;
+    color: #6b7280;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge-mini {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-badge-mini::before {
+    content: '●';
+    font-size: 8px;
+}
+
+.status-badge-mini.normal {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+}
+
+.status-badge-mini.maintenance {
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+    color: #92400e;
+}
+
+/* ================================================
+   📊 정보 칩 그리드
+   ================================================ */
+
+.info-chips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.info-chip {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.info-chip:active {
+    transform: scale(0.97);
+    border-color: #667eea;
+}
+
+.info-chip-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.info-chip-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.info-chip-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #9ca3af;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-chip-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 주소 칩 (전체 너비) */
+.info-chip.address {
+    grid-column: 1 / -1;
+}
+
+.info-chip.address .info-chip-value {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+/* ================================================
+   💬 설명 섹션
+   ================================================ */
+
+.card-description {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #fbbf24;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-description::before {
+    content: '💬';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 60px;
+    opacity: 0.15;
+}
+
+.card-description p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #78350f;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ================================================
+   🎯 액션 버튼
+   ================================================ */
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.card-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.card-btn:active::before {
+    transform: translateX(100%);
+}
+
+.card-btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.card-btn-primary:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.card-btn-secondary {
+    background: white;
+    color: #6b7280;
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-btn-secondary:active {
+    background: #f9fafb;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+/* ================================================
+   👤 담당자 정보
+   ================================================ */
+
+.card-manager-info {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border: 2px solid #818cf8;
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.manager-avatar-small {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.manager-details-small {
+    flex: 1;
+    min-width: 0;
+}
+
+.manager-name-small {
+    font-size: 14px;
+    font-weight: 700;
+    color: #3730a3;
+    margin-bottom: 3px;
+}
+
+.manager-contact-small {
+    font-size: 13px;
+    color: #4c1d95;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ================================================
+   ✨ 애니메이션
+   ================================================ */
+
+@keyframes slideUpBounce {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-scroll-content > * {
+    animation: fadeInUp 0.4s ease backwards;
+}
+
+.card-scroll-content > *:nth-child(1) { animation-delay: 0.05s; }
+.card-scroll-content > *:nth-child(2) { animation-delay: 0.1s; }
+.card-scroll-content > *:nth-child(3) { animation-delay: 0.15s; }
+.card-scroll-content > *:nth-child(4) { animation-delay: 0.2s; }
+.card-scroll-content > *:nth-child(5) { animation-delay: 0.25s; }
+
+/* ================================================
+   📱 스크롤바
+   ================================================ */
+
+.card-scroll-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-scroll-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.card-scroll-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+    border-radius: 3px;
+}
+
+/* ================================================
+   🎨 추가 인터랙션
+   ================================================ */
+
+/* 터치 피드백 */
+.card-btn:active {
+    transform: scale(0.97);
+}
+
+.info-chip:active {
+    background: #f3f4f6;
+}
+
+/* 로딩 상태 */
+.card-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 비어있는 상태 */
+.card-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #9ca3af;
+}
+
+.card-empty-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+}
+
+.card-empty-text {
+    font-size: 15px;
+    color: #6b7280;
+}
