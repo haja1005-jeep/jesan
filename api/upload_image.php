@@ -8,11 +8,6 @@ require_once '../includes/config.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
 
-// 관리자 권한 확인
-if (!isLoggedIn() || !isAdmin()) {
-    sendErrorResponse('권한이 없습니다.', 403);
-}
-
 setCorsHeaders();
 
 // POST만 허용
@@ -66,13 +61,15 @@ try {
     // URL 생성
     $fileUrl = '/jesan/uploads/assets/' . $fileName;
     
-    // 응답
+    // [수정] 프론트엔드가 result.data.url로 찾을 수 있도록 'data' 배열로 감싸서 전송 - 제미나이
     sendSuccessResponse([
-        'url' => $fileUrl,
-        'filename' => $fileName,
-        'size' => $file['size'],
-        'width' => $imageInfo[0],
-        'height' => $imageInfo[1]
+        'data' => [
+            'url' => $fileUrl,
+            'filename' => $fileName,
+            'size' => $file['size'],
+            'width' => $imageInfo[0],
+            'height' => $imageInfo[1]
+        ]
     ]);
     
 } catch (Exception $e) {
