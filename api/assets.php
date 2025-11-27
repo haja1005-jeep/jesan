@@ -52,10 +52,10 @@ try {
         $params['category'] = $category;
     }
     
-    // 지역 필터
+    // 지역 필터 (dong 기반)
     if ($region) {
-        $sql .= " AND a.address LIKE :region";
-        $params['region'] = '%' . $region . '%';
+        $sql .= " AND a.dong = :region";
+        $params['region'] = $region;
     }
     
     // 상태 필터
@@ -117,6 +117,20 @@ try {
     }
     $countStmt->execute();
     $total = $countStmt->fetch()['total'];
+    
+    // 이미지 정보 추가
+    foreach ($assets as &$asset) {
+        // 이미지 조회
+        $imgSql = "SELECT image_url FROM " . table('asset_images') . " WHERE asset_id = :asset_id ORDER BY is_primary DESC";
+        $imgStmt = $pdo->prepare($imgSql);
+        $imgStmt->execute(['asset_id' => $asset['id']]);
+        $images = $imgStmt->fetchAll(PDO::FETCH_COLUMN);
+        $asset['images'] = $images ?: [];
+        
+        // 숫자 타입 변환
+        $asset['price'] = $asset['price'] ? intval($asset['price']) : 0;
+        $asset['area'] = $asset['area'] ? floatval($asset['area']) : 0;
+    }
     
     // 거리 계산 (위치 정보가 있는 경우)
     if ($latitude && $longitude) {
