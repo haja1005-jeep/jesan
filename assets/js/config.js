@@ -9,10 +9,10 @@ const CONFIG = {
     // 카카오맵 설정
     KAKAO_MAP: {
         DEFAULT_CENTER: {
-            lat: 37.5665, // 서울시청 기본 좌표
-            lng: 126.9780
+            lat: 34.8118, // 목포시청 기본 좌표
+            lng: 126.3922
         },
-        DEFAULT_LEVEL: 5
+        DEFAULT_LEVEL: 6  // 목포시 전체가 보이도록 레벨 조정
     },
     
     // 마커 아이콘 설정

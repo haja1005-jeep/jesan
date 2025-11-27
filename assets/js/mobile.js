@@ -51,6 +51,35 @@
         }
     }
 
+
+	/**
+     * 상세 카드 스와이프 (아래로 내려서 닫기) - 제미나이 추가
+     */
+    let cardTouchStartY = 0;
+    
+    if (assetDetailCard) {
+        assetDetailCard.addEventListener('touchstart', (e) => {
+            // 카드 내용 스크롤이 최상단일 때만 스와이프 동작 인식
+            const content = document.getElementById('assetDetailContent');
+            if (content && content.scrollTop > 0) return;
+            
+            cardTouchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        assetDetailCard.addEventListener('touchend', (e) => {
+            const content = document.getElementById('assetDetailContent');
+            if (content && content.scrollTop > 0) return;
+
+            const cardTouchEndY = e.changedTouches[0].screenY;
+            const diff = cardTouchEndY - cardTouchStartY;
+            
+            // 50px 이상 아래로 스와이프하면 닫기
+            if (diff > 50) {
+                closeAssetDetailCard();
+            }
+        }, { passive: true });
+    }
+
     /**
      * 재산 상세 카드 열기
      */
@@ -276,11 +305,22 @@
     };
 
     /**
-     * 예약하기
+     * 예약하기 - 제미나이 추가
      */
-    window.bookAsset = function(assetId) {
-        alert('예약 기능은 로그인 후 이용 가능합니다.');
-        // 실제 구현 시 예약 페이지로 이동 또는 모달 표시
+     window.bookAsset = function(assetId) {
+        // 로그인 여부 확인 (세션 체크 API 호출 또는 전역 변수 확인 필요)
+        // 여기서는 간단하게 체크한다고 가정
+        const isLoggedIn = false; // 실제로는 auth 체크 로직 필요
+
+        if (!isLoggedIn) {
+            if (confirm('로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?')) {
+                window.location.href = 'admin/login.php'; // 모바일 로그인 경로
+            }
+            return;
+        }
+        
+        // 로그인 상태라면 예약 모달 띄우기 등의 로직
+        alert('예약 신청 화면으로 이동합니다. (구현 필요)');
     };
 
     /**

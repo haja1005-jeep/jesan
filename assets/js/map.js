@@ -199,6 +199,45 @@ const MapManager = {
         } else {
             alert('이 브라우저에서는 위치 정보를 지원하지 않습니다.');
         }
+    },
+    
+    /**
+     * 특정 재산에 지도 포커스
+     */
+    focusAsset(assetId) {
+        const asset = AppState.assets.find(a => a.id === assetId);
+        if (!asset) {
+            console.error('재산을 찾을 수 없습니다:', assetId);
+            return;
+        }
+        
+        // 지도 중심 이동 및 확대
+        const position = new kakao.maps.LatLng(asset.latitude, asset.longitude);
+        AppState.map.setCenter(position);
+        AppState.map.setLevel(3);
+        
+        // 모달 닫기
+        if (window.UI && typeof window.UI.closeAssetModal === 'function') {
+            window.UI.closeAssetModal();
+        }
+        
+        // 정보창 표시
+        const markerData = AppState.markers.find(m => m.asset.id === assetId);
+        if (markerData) {
+            this.showInfoWindow(asset, markerData.marker);
+        }
+        
+        console.log('✅ 재산으로 포커스:', asset.name);
+    },
+    
+    /**
+     * 모든 인포윈도우 닫기
+     */
+    closeAllInfoWindows() {
+        if (AppState.currentInfoWindow) {
+            AppState.currentInfoWindow.close();
+            AppState.currentInfoWindow = null;
+        }
     }
 };
 
