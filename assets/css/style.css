@@ -805,3 +805,53 @@ body {
         display: block;
     }
 }
+
+
+/* ================================================
+   [추가] PC/모바일 표시 제어 및 PC 레이아웃 복원 - 제미나이
+   ================================================ */
+
+/* 기본적으로(PC에서) 모바일 전용 요소 숨김 */
+.mobile-only {
+    display: none !important;
+}
+
+/* PC 전용 요소 표시 */
+.desktop-only {
+    display: block !important;
+}
+
+/* 사이드바 레이아웃 복원 (Flexbox로 하단 바 고정) */
+.filter-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 필터 섹션들이 남은 공간을 차지하도록 설정 */
+.filter-section:nth-last-child(2) { 
+    flex: 1; 
+    /* 마지막 섹션(상태)이 늘어나서 결과 바를 바닥으로 밀어내도록 함 */
+    /* 필요에 따라 조절 가능 */
+} 
+
+.filter-summary {
+    margin-top: auto; /* 하단 고정 */
+}
+
+/* ========== 모바일 화면 (768px 이하) 설정 ========== */
+@media (max-width: 768px) {
+    /* 모바일에서는 PC 요소 숨김 */
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* 모바일 요소 보임 */
+    .mobile-only {
+        display: block !important;
+    }
+    
+    /* 모바일에서는 사이드바 Flex 해제 (스크롤 문제 방지) */
+    .filter-panel {
+        display: block;
+    }
+}

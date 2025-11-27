@@ -71,6 +71,17 @@
         font-size: 14px;
     }
 
+
+    /* [추가] 부모 요소의 덫 해제 */
+    .main-container {
+        /* fixed 대신 absolute를 사용하여 자식 요소(사이드바)가 z-index 영향을 덜 받게 함 */
+        position: absolute !important;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* 스크롤 방지 */
+    }
+
+
     /* ========== 모바일 오버레이 ========== */
     .mobile-overlay {
         position: fixed;
@@ -101,7 +112,8 @@
         background: white;
         box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
         transition: left 0.3s ease;
-        z-index: 1001;
+        /* [수정] z-index를 1001에서 2000으로 높이고 !important 추가 */
+        z-index: 2000 !important;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
@@ -318,6 +330,7 @@
         border-radius: 20px 20px 0 0;
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
         padding: 20px;
+		padding-bottom: calc(20px + env(safe-area-inset-bottom)); /* 아이폰 하단 바 대응 */
         overflow-y: auto;
         z-index: 200;
         transform: translateY(100%);
@@ -366,6 +379,10 @@
     .filter-panel::-webkit-scrollbar {
         width: 0;
         display: none;
+    }
+
+	.filter-panel {
+        z-index: 2001 !important; /* 오버레이(1000)보다 높게 설정 */
     }
 }
 
@@ -483,4 +500,51 @@
 
 .map {
     touch-action: pan-x pan-y;
+}
+
+
+
+/* ================================================
+   [수정] 헤더 버튼 중복 표시 방지 및 UI 정리
+   ================================================ */
+
+/* 1. 모바일 화면 (768px 이하): 데스크톱 메뉴 숨김 강제 */
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none !important;
+    }
+    .mobile-login {
+        display: block !important;
+    }
+    
+    /* 로고와 햄버거 버튼 간격 조정 */
+    .header-content {
+        justify-content: space-between; 
+    }
+}
+
+/* 2. 데스크톱/태블릿 화면 (769px 이상): 모바일 버튼 숨김 강제 */
+@media (min-width: 769px) {
+    .mobile-login {
+        display: none !important;
+    }
+    .desktop-nav {
+        display: flex !important;
+    }
+}
+
+
+@media (max-width: 768px) {
+    /* 아이폰/모바일 기본 셀렉트 스타일 제거하고 커스텀 */
+    .filter-select {
+        -webkit-appearance: none; /* 사파리/크롬 기본 화살표 제거 */
+        -moz-appearance: none;
+        appearance: none;
+        background-color: white;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5rem; /* 화살표 공간 확보 */
+    }
 }
